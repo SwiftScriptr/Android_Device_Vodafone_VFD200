@@ -1,0 +1,81 @@
+#
+# Copyright (C) 2018 The TwrpBuilder Open-Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+# Mount point		FStype					Device													Flags
+
+/system             ext4        /dev/block/platform/sdio_emmc/by-name/system        /dev/block/mmcblk0p15     flags=display="System";backup=1;canbewiped;wipeingui
+/cache              ext4        /dev/block/platform/sdio_emmc/by-name/cache         /dev/block/mmcblk0p16     flags=display="Cache";canbewiped;wipeingui;wipeduringfactoryreset
+/data               ext4        /dev/block/platform/sdio_emmc/by-name/userdata      /dev/block/mmcblk0p17     flags=length=-16384;display="Data";backup=1;canbewiped;wipeingui;wipeduringfactoryreset;settingsstorage;encryptable=/
+
+/boot               emmc        /dev/block/platform/sdio_emmc/by-name/boot          /dev/block/mmcblk0p5      flags=display="Boot";backup=1;flashimg=1
+/logo               emmc        /dev/block/platform/sdio_emmc/by-name/logo          /dev/block/mmcblk0p7      flags=display="Logo";backup=1;flashimg=1
+/NV_W               emmc        /dev/block/platform/sdio_emmc/by-name/wcnfixnv1     /dev/block/mmcblk0p2      flags=display="wfixnv1";backup=1;flashimg=1
+/productinfo        ext4        /dev/block/platform/sdio_emmc/by-name/prodnv        /dev/block/mmcblk0p1      flags=display="Prodvn";backup=1
+
+/recovery           emmc        /dev/block/platform/sdio_emmc/by-name/recovery      /dev/block/mmcblk0p6      flags=display="Recovery";backup=1;flashimg=1
+
+/storage/sdcard0    auto        /dev/block/platform/sdio_sd/mmcblk1p1         /dev/block/mmcblk1                     flags=display="Micro SDcard";storage;wipeingui;removable;settingsstorage;backup=0;encryptable=userdata
+/usbotg             auto        /dev/block/sda1                               /dev/block/sda                         flags=display="USB-OTG";backup=0;wipeingui;storage;removable
+auto                vfat        /devices/sdio_emmc/mmcblk0*                   defaults        voldmanaged=sdcard0:auto
+auto                auto        /devices/sdio_emmc/mmcblk1*                   defaults        voldmanaged=sdcard1:auto;noemulatedsd;encryptable=userdata
+auto                vfat        /devices/platform/sdio_usb*                   defaults        voldmanaged=usbotg:auto
+
+/spl                emmc        /dev/block/platform/sdio_emmc/by-name/splloader     /dev/block/mmcblk0boot0   flags=display="Splloader";backup=1;flashimg=1
+/Uboot              emmc        /dev/block/platform/sdio_emmc/by-name/uboot         /dev/block/mmcblk0boot1   flags=display="Uboot";backup=1;flashimg=1
+/wdsp               emmc        /dev/block/platform/sdio_emmc/by-name/wdsp          /dev/block/mmcblk0p3      flags=display="wdsp";backup=1
+/misc               emmc        /dev/block/platform/sdio_emmc/by-name/misc          /dev/block/mmcblk0p4      flags=display="Misc";backup=1
+
+/wruntimenv2        emmc        /dev/block/platform/sdio_emmc/by-name/wruntimenv2   /dev/block/mmcblk0p13     flags=display="wcruntimenv2";backup=1;flashimg=1
+/systeminfo         ext4        /dev/block/platform/sdio_emmc/by-name/systinfo      /dev/block/mmcblk0p14     flags=display="Systeminfo";backup=1;flashimg=1
+/wruntimenv1        emmc        /dev/block/platform/sdio_emmc/by-name/wruntimenv1   /dev/block/mmcblk0p12     flags=display="wcnruntimenv1";backup=1
+/wcnmodem           emmc        /dev/block/platform/sdio_emmc/by-name/wcnmodem      /dev/block/mmcblk0p8
+/fbootlogo          emmc        /dev/block/platform/sdio_emmc/by-name/fbootlogo     /dev/block/mmcblk0p9
+/oem                ext4        /dev/block/platform/sdio_emmc/by-name/oem           /dev/block/mmcblk0p10
+/wcnfdl             emmc        /dev/block/platform/sdio_emmc/by-name/wcnfdl        /dev/block/mmcblk0p11
+
+
+/tdmodem            emmc        /dev/block/platform/sdio_emmc/by-name/tdmodem       /dev/block/mmcblk0p18     
+/tddsp              emmc        /dev/block/platform/sdio_emmc/by-name/tddsp         /dev/block/mmcblk0p19     
+/tdfixnv1           emmc        /dev/block/platform/sdio_emmc/by-name/tdfixnv1      /dev/block/mmcblk0p20     
+/tdfixnv2           emmc        /dev/block/platform/sdio_emmc/by-name/tdfixnv2      /dev/block/mmcblk0p21     
+/tdruntimenv1       emmc        /dev/block/platform/sdio_emmc/by-name/tdruntimenv1  /dev/block/mmcblk0p22     
+/tdruntimenv2       emmc        /dev/block/platform/sdio_emmc/by-name/tdruntimenv2  /dev/block/mmcblk0p23     
+
+
+/ltemodem           emmc        /dev/block/platform/sdio_emmc/by-name/l_modem       /dev/block/mmcblk0p24
+/ltedsp             emmc        /dev/block/platform/sdio_emmc/by-name/l_ldsp        /dev/block/mmcblk0p25
+/ltefixnv1          emmc        /dev/block/platform/sdio_emmc/by-name/l_fixnv1      /dev/block/mmcblk0p26
+/ltefixnv2          emmc        /dev/block/platform/sdio_emmc/by-name/l_fixnv2      /dev/block/mmcblk0p27
+/lteruntimenv2      emmc        /dev/block/platform/sdio_emmc/by-name/l_runtimenv1  /dev/block/mmcblk0p28
+/lteruntimenv2      emmc        /dev/block/platform/sdio_emmc/by-name/l_runtimenv2  /dev/block/mmcblk0p29
+
+/lfmodem            emmc        /dev/block/platform/sdio_emmc/by-name/lf_modem      /dev/block/mmcblk0p30
+/lfwarm             emmc        /dev/block/platform/sdio_emmc/by-name/lf_warm       /dev/block/mmcblk0p31
+/lfgdsp             emmc        /dev/block/platform/sdio_emmc/by-name/lf_gdsp       /dev/block/mmcblk0p32
+/lfldsp             emmc        /dev/block/platform/sdio_emmc/by-name/lf_ldsp       /dev/block/mmcblk0p33
+/lffixnv1           emmc        /dev/block/platform/sdio_emmc/by-name/lf_fixnv1     /dev/block/mmcblk0p34
+/lffixnv2           emmc        /dev/block/platform/sdio_emmc/by-name/lf_fixnv2     /dev/block/mmcblk0p35
+/lfruntimenv1       emmc        /dev/block/platform/sdio_emmc/by-name/lf_runtimenv1 /dev/block/mmcblk0p36
+/lfruntimenv2       emmc        /dev/block/platform/sdio_emmc/by-name/lf_runtimenv2 /dev/block/mmcblk0p37
+
+/tlmodem            emmc        /dev/block/platform/sdio_emmc/by-name/tl_modem      /dev/block/mmcblk0p38
+/tltdsp             emmc        /dev/block/platform/sdio_emmc/by-name/tl_tdsp       /dev/block/mmcblk0p39
+/tlldsp             emmc        /dev/block/platform/sdio_emmc/by-name/tl_ldsp       /dev/block/mmcblk0p40
+/tlfixnv1           emmc        /dev/block/platform/sdio_emmc/by-name/tl_fixnv1     /dev/block/mmcblk0p41
+/tlfixnv2           emmc        /dev/block/platform/sdio_emmc/by-name/tl_fixnv2     /dev/block/mmcblk0p42
+/tlruntimenv1       emmc        /dev/block/platform/sdio_emmc/by-name/tl_runtimenv1 /dev/block/mmcblk0p43
+/tlruntimenv2       emmc        /dev/block/platform/sdio_emmc/by-name/tl_runtimenv2 /dev/block/mmcblk0p44
+
